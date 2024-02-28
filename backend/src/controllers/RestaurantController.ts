@@ -22,7 +22,7 @@ const searchRestaurant = async (req: Request, res: Response) => {
     const city = req.params.city
 
     const searchQuery = (req.query.searchQuery as string) || ''
-    const selectedCousines = (req.query.selectedCousines as string) || ''
+    const selectedCuisines = (req.query.selectedCuisines as string) || ''
     const sortOption = (req.query.sortOption as string) || 'lastUpdated'
     const page = parseInt(req.query.page as string) || 1
 
@@ -42,10 +42,10 @@ const searchRestaurant = async (req: Request, res: Response) => {
       })
     }
 
-    if (selectedCousines) {
+    if (selectedCuisines) {
       // URL = selectedCousines=italian,burgers,chinese
       // [italian, burgers, chinese]
-      const cousinesArray = selectedCousines
+      const cousinesArray = selectedCuisines
         .split(',')
         .map((cuisine) => new RegExp(cuisine, 'i'))
 
