@@ -8,6 +8,7 @@ import { MenuItem as MenuItemType } from '../types'
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CheckoutButton from '@/components/CheckoutButton'
+import { UserFormData } from '@/forms/user-profile-form/UserProfileForm'
 
 export type CartItem = {
   _id: string
@@ -83,6 +84,14 @@ const DetailPage = () => {
     })
   }
 
+  const onCheckout = (userFormData: UserFormData) => {
+    console.log('userFormData', userFormData)
+  }
+
+  if (isLoading || !restaurant) {
+    return 'Loading...'
+  }
+
   return (
     <div className='flex flex-col gap-10'>
       <AspectRatio ratio={16 / 5}>
@@ -111,7 +120,11 @@ const DetailPage = () => {
               removeFromCart={removeFromCart}
             />
             <CardFooter>
-              <CheckoutButton />
+              <CheckoutButton
+                disabled={cartItems.length === 0}
+                onCheckout={onCheckout}
+                isLoading={false}
+              />
             </CardFooter>
           </Card>
         </div>
