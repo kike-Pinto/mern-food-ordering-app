@@ -14,6 +14,19 @@ const STRIPE_ENDPOINT_SECRET = process.env.STRIPE_WEBHOOK_SECRET as string
 //   res.send()
 // }
 
+const getMyOrders = async (req: Request, res: Response) => {
+  try {
+    const orders = await Order.find({ user: req.userId })
+      .populate('restaurant')
+      .populate('user')
+
+    res.json(orders)
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: 'something went wrong!' })
+  }
+}
+
 type CheckoutSessionRequest = {
   cartItems: {
     menuItemId: string
@@ -169,4 +182,5 @@ const createSession = async (
 export default {
   createCheckoutSession,
   stripeWebhookHandler,
+  getMyOrders,
 }
