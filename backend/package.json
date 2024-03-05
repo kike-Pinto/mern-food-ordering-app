@@ -5,7 +5,7 @@
   "main": "./src/index.ts",
   "scripts": {
     "dev": "concurrently \"nodemon\" \"npm run stripe\"",
-    "stripe": "stripe listen --forward-to localhost:7000/api/order/checkout/webhook"
+    "stripe": "C:\\Users\\Cristian\\Downloads\\stripe_1.19.2_windows_x86_64\\stripe listen --forward-to localhost:7000/api/order/checkout/webhook"
   },
   "keywords": [],
   "author": "",
